@@ -16,7 +16,8 @@
     "@nuxtjs/supabase": "^1.4.1",
     "nuxt": "^3.13.2",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4"
