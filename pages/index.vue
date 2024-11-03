@@ -68,7 +68,10 @@ const copyText = () => {
             class="inline-flex justify-center items-center gap-1 text-center bg-gradient-to-tl from-primary to-primary-600 hover:from-primary-300 hover:to-primary-600 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-4 dark:focus:ring-offset-gray-800"
             to="/docs"
           >
-            <UIcon name="i-lucide-square-dashed-bottom-code h-5 w-5"></UIcon>
+            <UIcon
+              name="i-lucide-square-dashed-bottom-code"
+              class="h-5 w-5"
+            ></UIcon>
             Open Documentation
           </NuxtLink>
 
@@ -76,7 +79,10 @@ const copyText = () => {
             class="inline-flex justify-center items-center gap-1 text-center py-3 px-4"
             to="/sign-in"
           >
-            <UIcon name="i-lucide-square-dashed-bottom-code h-5 w-5"></UIcon>
+            <UIcon
+              name="i-lucide-square-dashed-bottom-code"
+              class="h-5 w-5"
+            ></UIcon>
             Try Example
           </NuxtLink>
         </div>
