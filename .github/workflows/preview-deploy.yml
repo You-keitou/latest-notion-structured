@@ -1,0 +1,37 @@
+name: Deploy Preview
+
+on:
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - 'docs/**' # Optional: ignore certain paths
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  deploy-preview:
+    if: github.ref != 'refs/heads/main' # Ensures it skips the main branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Use the version compatible with your project
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install NuxtHub CLI
+        run: npm install -g @nuxthub/cli
+
+      - name: Deploy to Preview
+        env:
+          NUXT_HUB_USER_TOKEN: ${{ secrets.NUXT_HUB_USER_TOKEN }}
+        run: npx nuxthub deploy --preview
