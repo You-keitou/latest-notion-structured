@@ -17,5 +17,8 @@
     "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
   }
 }
