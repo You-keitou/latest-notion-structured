@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
   <div>
     <NuxtLayout>
-      <NuxtLoadingIndicator></NuxtLoadingIndicator>
+      <NuxtLoadingIndicator />
       <NuxtPage />
       <UNotifications />
 
