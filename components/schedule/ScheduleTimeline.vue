@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 import { gql } from "graphql-tag";
-import VueDraggable from 'vuedraggable';
+import { VueDraggableNext } from 'vue-draggable-plus';
 
 const GET_ACTIONS = gql`
   query GetActions {
@@ -25,25 +25,42 @@ const actions = computed(() =>
 );
 
 const onSort = (evt: any) => {
-  // ここでドラッグ&ドロップ後の並び順を保存するロジックを実装
+  // Here you would implement the logic to save the new order
   console.log('New order:', actions.value.map(action => action.id));
 };
 </script>
 
 <template>
   <div class="p-4">
-    <VueDraggable 
-      v-model="actions" 
+    <VueDraggableNext
+      v-model="actions"
       item-key="id"
       @end="onSort"
+      animation="300"
+      ghost-class="ghost"
+      chosen-class="chosen"
+      drag-class="drag"
       handle=".drag-handle"
       class="space-y-2"
     >
       <template #item="{ element }">
-        <div class="bg-white rounded-lg shadow-sm p-2 cursor-move drag-handle">
+        <div class="bg-white rounded-lg shadow-sm p-2 cursor-move drag-handle hover:bg-gray-50 transition-colors">
           <ScheduleTimelineItem :action="element" />
         </div>
       </template>
-    </VueDraggable>
+    </VueDraggableNext>
   </div>
 </template>
+
+<style scoped>
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.chosen {
+  background: #eee;
+}
+.drag {
+  opacity: 0.9;
+}
+</style>
