@@ -13,13 +13,17 @@
     "@nuxt/icon": "^1.6.1",
     "@nuxt/ui": "^2.18.7",
     "@nuxthub/core": "^0.8.4",
+    "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "@nuxtjs/supabase": "^1.4.1",
+    "dayjs-nuxt": "2.1.11",
+    "graphql-tag": "^2.12.6",
     "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest",
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4"
+    "@biomejs/biome": "1.9.4",
+    "@iconify-json/lucide": "^1.2.20"
   }
 }
