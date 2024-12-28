@@ -43,16 +43,8 @@ const onSort = (evt: any) => {
   <div class="flex flex-col h-full">
     <!-- Scheduled Actions -->
     <div class="flex-1 p-4 overflow-y-auto">
-      <VueDraggable 
-        v-model="scheduledActions" 
-        id="scheduled"
-        item-key="id" 
-        @end="onSort"
-        :animation="300" 
-        ghost-class="ghost"
-        :group="{ name: 'actions' }"
-        class="space-y-4"
-      >
+      <VueDraggable v-model="scheduledActions" id="scheduled" item-key="id" @end="onSort" :animation="300"
+        ghost-class="ghost" :group="{ name: 'actions' }" class="space-y-4">
         <div v-for="action in scheduledActions" :key="action.id"
           class="bg-white rounded-lg shadow-sm p-4 cursor-move hover:bg-gray-50">
           <ScheduleTimelineItem :action="action" />
@@ -63,22 +55,16 @@ const onSort = (evt: any) => {
     <!-- Unscheduled Actions -->
     <div class="border-t border-gray-200 p-4 bg-gray-50">
       <h3 class="text-sm font-medium text-gray-500 mb-4">Unscheduled Tasks</h3>
-      <VueDraggable 
-        v-model="unscheduledActions" 
-        id="unscheduled"
-        item-key="id" 
-        @end="onSort"
-        :animation="300" 
-        ghost-class="ghost"
-        :group="{ name: 'actions' }"
-        class="flex flex-wrap gap-4"
-      >
+      <VueDraggable v-model="unscheduledActions" id="unscheduled" item-key="id" @end="onSort" :animation="300"
+        ghost-class="ghost" :group="{ name: 'actions' }" class="flex flex-wrap gap-4">
         <div v-for="action in unscheduledActions" :key="action.id"
           class="bg-white rounded-lg shadow-sm p-2 cursor-move hover:bg-gray-50 w-48">
           <div class="flex items-center gap-2">
+            <!-- Icon 
             <div class="w-8 h-8 rounded-full" :class="contextColors[action.context] || 'bg-gray-500'">
               <UIcon :name="contextIcons[action.context] || 'i-lucide-check'" class="w-5 h-5 m-1.5 text-white"/>
             </div>
+            -->
             <span class="text-sm">{{ action.title }}</span>
           </div>
         </div>
