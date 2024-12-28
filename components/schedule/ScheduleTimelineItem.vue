@@ -13,7 +13,7 @@
       <p v-if="duration" class="text-xs text-gray-500">{{ duration }}</p>
     </div>
     <div class="w-8">
-      <input type="checkbox" class="rounded-full" :checked="action.completed">
+      <input type="checkbox" class="rounded-full" :checked="action?.completed">
     </div>
   </div>
 </template>
