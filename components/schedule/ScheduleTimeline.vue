@@ -40,11 +40,11 @@ const onSort = (evt: any) => {
   <div class="p-4">
     <VueDraggable ref="el" v-model="actions" item-key="id" @end="onSort" :animation="300" ghost-class="ghost"
       chosen-class="chosen" drag-class="drag" handle=".drag-handle" class="space-y-2">
-      <template #item="{ element }">
-        <div class="bg-white rounded-lg shadow-sm p-2 cursor-move drag-handle hover:bg-gray-50 transition-colors">
-          <ScheduleTimelineItem :action="element" />
-        </div>
-      </template>
+
+      <div class="bg-white rounded-lg shadow-sm p-2 cursor-move drag-handle hover:bg-gray-50 transition-colors" v-for="action in actions">
+        <ScheduleTimelineItem :action="action" />
+      </div>
+
     </VueDraggable>
   </div>
 </template>
