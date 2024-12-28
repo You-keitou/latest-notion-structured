@@ -1,13 +1,19 @@
 
 <template>
-  <div class="flex items-center gap-2 py-1">
-    <div class="text-sm text-gray-500 w-20">{{ time }}</div>
-    <div class="w-8 h-8 rounded-full" :class="bgColorClass" :title="action.context">
-      <UIcon :name="icon" class="w-5 h-5 m-1.5 text-white"/>
+  <div class="flex items-center gap-4">
+    <div class="text-sm text-gray-500 w-24 text-right">{{ time }}</div>
+    <div class="relative">
+      <div class="absolute h-full w-0.5 bg-gray-200 left-1/2 -translate-x-1/2 -top-4"></div>
+      <div class="w-10 h-10 rounded-full" :class="bgColorClass" :title="action.context">
+        <UIcon :name="icon" class="w-6 h-6 m-2 text-white"/>
+      </div>
     </div>
     <div class="flex-1">
       <h3 class="text-sm font-medium">{{ action.title }}</h3>
       <p v-if="duration" class="text-xs text-gray-500">{{ duration }}</p>
+    </div>
+    <div class="w-8">
+      <input type="checkbox" class="rounded-full" :checked="action.completed">
     </div>
   </div>
 </template>
@@ -20,6 +26,7 @@ const props = defineProps<{
     context?: string;
     start_time?: string;
     end_time?: string;
+    completed?: boolean;
   };
 }>();
 

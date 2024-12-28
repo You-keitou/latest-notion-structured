@@ -18,6 +18,7 @@ const GET_ACTIONS = gql`
           context
           start_time
           end_time
+          completed
         }
       }
     }
@@ -31,20 +32,17 @@ const actions = computed(() =>
 );
 
 const onSort = (evt: any) => {
-  // Here you would implement the logic to save the new order
   console.log('New order:', actions.value.map(action => action.id));
 };
 </script>
 
 <template>
-  <div class="p-4">
+  <div class="p-4 max-w-3xl mx-auto">
     <VueDraggable ref="el" v-model="actions" item-key="id" @end="onSort" :animation="300" ghost-class="ghost"
-      chosen-class="chosen" drag-class="drag" handle=".drag-handle" class="space-y-2">
-
-      <div class="bg-white rounded-lg shadow-sm p-2 cursor-move drag-handle hover:bg-gray-50 transition-colors" v-for="action in actions">
+      chosen-class="chosen" drag-class="drag" handle=".drag-handle" class="space-y-8">
+      <div class="bg-white rounded-lg shadow-sm p-4 cursor-move drag-handle hover:bg-gray-50 transition-colors" v-for="action in actions">
         <ScheduleTimelineItem :action="action" />
       </div>
-
     </VueDraggable>
   </div>
 </template>
