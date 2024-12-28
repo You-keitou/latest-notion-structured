@@ -87,3 +87,87 @@ const onSort = (evt: any) => {
   opacity: 0.9;
 }
 </style>
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+import { gql, useQuery } from '@apollo/client/core';
+import ScheduleTimelineItem from './ScheduleTimelineItem.vue';
+
+const GET_ACTIONS = gql`
+  query GetActions {
+    actionsCollection {
+      edges {
+        node {
+          id
+          title
+          context
+          start_time
+          end_time
+        }
+      }
+    }
+  }
+`;
+
+const { result } = useQuery(GET_ACTIONS);
+
+const scheduledActions = computed(() =>
+  result.value?.actionsCollection?.edges
+    ?.map(edge => edge.node)
+    .filter(action => action.start_time)
+    .sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime()) || []
+);
+
+const unscheduledActions = computed(() =>
+  result.value?.actionsCollection?.edges
+    ?.map(edge => edge.node)
+    .filter(action => !action.start_time) || []
+);
+
+const onSort = (evt: any) => {
+  console.log('New order:', evt.to.id);
+};
+</script>
+
+<template>
+  <div class="flex flex-col h-full">
+    <!-- Scheduled Actions -->
+    <div class="flex-1 p-4 overflow-y-auto">
+      <VueDraggable v-model="scheduledActions" id="scheduled" item-key="id" @end="onSort" :animation="300"
+        ghost-class="ghost" :group="{ name: 'actions' }" class="space-y-4">
+        <div v-for="action in scheduledActions" :key="action.id"
+          class="bg-white rounded-lg shadow-sm p-4 cursor-move hover:bg-gray-50">
+          <ScheduleTimelineItem :action="action" />
+        </div>
+      </VueDraggable>
+    </div>
+
+    <!-- Unscheduled Actions -->
+    <div class="border-t border-gray-200 p-4 bg-gray-50">
+      <h3 class="text-sm font-medium text-gray-500 mb-4">Unscheduled Tasks</h3>
+      <VueDraggable v-model="unscheduledActions" id="unscheduled" item-key="id" @end="onSort" :animation="300"
+        ghost-class="ghost" :group="{ name: 'actions' }" class="flex flex-wrap gap-4">
+        <div v-for="action in unscheduledActions" :key="action.id"
+          class="bg-white rounded-lg shadow-sm p-2 cursor-move hover:bg-gray-50 w-48">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">{{ action.title }}</span>
+          </div>
+        </div>
+      </VueDraggable>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+
+.chosen {
+  background: #eee;
+}
+
+.drag {
+  opacity: 0.9;
+}
+</style>
