@@ -86,7 +86,7 @@ const signInWithProvider = async (provider: "GITHUB" | "GOOGLE") => {
       throw new BaseError(signIn.error.status, signIn.error.message);
     }
 
-    navigateTo("/dashboard");
+    navigateTo("/");
     isLoading.value = false;
   } catch (error) {
     isLoading.value = false;
@@ -101,12 +101,7 @@ const signInWithProvider = async (provider: "GITHUB" | "GOOGLE") => {
       <div class="flex h-[100vh] w-full justify-center items-center">
         <div class="w-10/12 md:w-8/12 lg:w-4/12 xl:w-3/12">
           <UCard>
-            <UForm
-              :schema="signInValidation"
-              :state="form"
-              class="space-y-2"
-              @submit="signInWithCredential"
-            >
+            <UForm :schema="signInValidation" :state="form" class="space-y-2" @submit="signInWithCredential">
               <div class="space-y-4">
                 <div class="flex justify-center">
                   <img src="/icon.svg" class="h-[80px]" />
@@ -125,31 +120,16 @@ const signInWithProvider = async (provider: "GITHUB" | "GOOGLE") => {
                 </UFormGroup>
                 <div class="flex items-center gap-1 justify-start mt-3 text-xs">
                   <p class="opacity-50">Forgot your password?</p>
-                  <NuxtLink to="/forgot-password" class="underline"
-                    >click here</NuxtLink
-                  >
+                  <NuxtLink to="/forgot-password" class="underline">click here</NuxtLink>
                 </div>
 
-                <UButton
-                  :loading="isLoading"
-                  :disabled="isLoading"
-                  type="submit"
-                  label="Login"
-                  color="gray"
-                  block
-                />
+                <UButton :loading="isLoading" :disabled="isLoading" type="submit" label="Login" color="gray" block />
               </div>
               <UDivider label="or" color="gray" orientation="vertical" />
 
               <div class="space-y-4 flex flex-col justify-center">
-                <UButton
-                  @click="signInWithProvider('GOOGLE')"
-                  :disabled="isLoading"
-                  color="black"
-                  label="Continue with Google"
-                  icon="i-logos-google-icon"
-                  block
-                />
+                <UButton @click="signInWithProvider('GOOGLE')" :disabled="isLoading" color="black"
+                  label="Continue with Google" icon="i-logos-google-icon" block />
               </div>
             </UForm>
           </UCard>

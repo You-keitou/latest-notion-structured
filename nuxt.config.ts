@@ -18,6 +18,11 @@ export default defineNuxtConfig({
     clients: {
       default: {
         httpEndpoint: `${process.env.SUPABASE_URL}/graphql/v1`,
+        httpLinkOptions: {
+          headers: {
+            'apiKey': `${process.env.SUPABASE_KEY}`,
+          },
+        }
       },
     },
   },
